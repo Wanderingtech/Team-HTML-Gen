@@ -1,0 +1,26 @@
+{
+  "name": "team-html-gen",
+  "version": "1.0.0",
+  "description": "A Node CLI that takes in information about employees and generates an HTML webpage that displays summaries for each person.",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wanderingtech/Team-HTML-Gen.git"
+  },
+  "author": "Heather Stolz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wanderingtech/Team-HTML-Gen/issues"
+  },
+  "homepage": "https://github.com/Wanderingtech/Team-HTML-Gen#readme",
+  "dependencies": {
+    "inquirer": "^7.3.2"
+  }
+}
