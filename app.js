@@ -13,7 +13,42 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+const teamArr = [];
 
+//Question prompts for creating Team
+// HINT: each employee type (manager, engineer, or intern) has slightly different
+// information; write your code to ask different questions via inquirer depending on
+// employee type.
+
+inquirer
+    .prompt([
+        {
+        type: "list",
+        name: "teamRole",
+        message: "What is your team member's role?",
+        choices: [
+            "Manager",
+            "Engineer",
+            "Intern"
+        ]
+    },
+    {
+        type: "input",
+        name: "name",
+        message: "What's your team member's name?"
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "What is your team member's id?"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is your team member's email?"
+    }
+
+    ])
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
@@ -24,9 +59,6 @@ const render = require("./lib/htmlRenderer");
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
 
 // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
 // and Intern classes should all extend from a class named Employee; see the directions
