@@ -19,36 +19,88 @@ const teamArr = [];
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
 // employee type.
+function getRole() {
+    inquirer
+        .prompt([
+            {
+                type: "list",
+                name: "teamRole",
+                message: "What is your team member's role?",
+                choices: [
+                    "Manager",
+                    "Engineer",
+                    "Intern",
+                    "Finished"
+                ]
+            }, then(answers => {
+                teamInfo();
+                if (answers.choice === "Manager") {
+                    managerInfo()
+                } else if (answers.choice === "Engineer") {
+                    engineerInfo()
+                } else if (answers.choice === "Intern") {
+                    internInfo
+                } else if (answers.choice === "Finished") {
+                    //create html function
+                }
+            }
+//send answer to part of the team render
 
-inquirer
-    .prompt([
-        {
-        type: "list",
-        name: "teamRole",
-        message: "What is your team member's role?",
-        choices: [
-            "Manager",
-            "Engineer",
-            "Intern"
-        ]
-    },
-    {
-        type: "input",
-        name: "name",
-        message: "What's your team member's name?"
-    },
-    {
-        type: "input",
-        name: "id",
-        message: "What is your team member's id?"
-    },
-    {
-        type: "input",
-        name: "email",
-        message: "What is your team member's email?"
-    }
+};
+function teamInfo() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "name",
+                message: "What's your team member's name?"
+            },
+            {
+                type: "input",
+                name: "id",
+                message: "What is your team member's id?"
+            },
+            {
+                type: "input",
+                name: "email",
+                message: "What is your team member's email?"
+            }
+        ])
+};
 
-    ])
+function engineerInfo() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "github",
+                message: "What's your engineer's GitHub?"
+            }
+        ])
+};
+
+function managerInfo() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "officeNumber",
+                message: "What is your manager's office number?"
+            }
+        ])
+}
+
+function internInfo() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "school",
+                message: "What is your intern's school?"
+            }
+        ])
+}
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
