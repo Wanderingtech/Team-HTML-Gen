@@ -19,6 +19,13 @@ getRole()
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
 // employee type.
+function generateHTML(){
+    console.log(teamArr);
+    fs.writeFileSync(outputPath, render(teamArr)), function(){
+        console.log("html file generated")
+    }
+}
+
 function getRole() {
     inquirer.prompt([
             {
@@ -39,7 +46,7 @@ function getRole() {
                 } else if (answers.teamRole === "Intern") {
                     internInfo()
                 } else if (answers.teamRole === "Finished") {
-                    //create html function
+                   generateHTML()
                 }
             })
         
@@ -69,14 +76,33 @@ function teamInfo() {
 
 function engineerInfo() {
     inquirer
-        .prompt([
-            {
-                type: "input",
-                name: "github",
-                message: "What's your engineer's GitHub?"
-            }
-        ])
-};
+    .prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What's your team member's name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is your team member's id?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is your team member's email?"
+        },
+        {
+            type: "input",
+            name: "gitHub",
+            message: "What is your Engineer's GitHub username?"
+        }
+        ]).then(function(userResponse){
+            var myEngineer = new Engineer(userResponse.name, userResponse.id, userResponse.email, userResponse.gitHub);
+            teamArr.push(myEngineer);
+            getRole()
+        })
+}
 
 function managerInfo() {
     inquirer
@@ -110,13 +136,32 @@ function managerInfo() {
 
 function internInfo() {
     inquirer
-        .prompt([
-            {
-                type: "input",
-                name: "school",
-                message: "What is your intern's school?"
-            }
-        ])
+    .prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What's your team member's name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is your team member's id?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is your team member's email?"
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "What is your intern's school?"
+        }
+        ]).then(function(userResponse){
+            var myIntern = new Intern(userResponse.name, userResponse.id, userResponse.email, userResponse.school);
+            teamArr.push(myIntern);
+            getRole()
+        })
 }
 
 // After the user has input all employees desired, call the `render` function (required
