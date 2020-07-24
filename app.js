@@ -14,14 +14,13 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 const teamArr = [];
-
+getRole()
 //Question prompts for creating Team
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
 // employee type.
 function getRole() {
-    inquirer
-        .prompt([
+    inquirer.prompt([
             {
                 type: "list",
                 name: "teamRole",
@@ -32,21 +31,21 @@ function getRole() {
                     "Intern",
                     "Finished"
                 ]
-            }, then(answers => {
-                teamInfo();
-                if (answers.choice === "Manager") {
+            }]) .then(answers => {
+                if (answers.teamRole === "Manager") {
                     managerInfo()
-                } else if (answers.choice === "Engineer") {
+                } else if (answers.teamRole === "Engineer") {
                     engineerInfo()
-                } else if (answers.choice === "Intern") {
-                    internInfo
-                } else if (answers.choice === "Finished") {
+                } else if (answers.teamRole === "Intern") {
+                    internInfo()
+                } else if (answers.teamRole === "Finished") {
                     //create html function
                 }
-            }
-//send answer to part of the team render
-
+            })
+        
 };
+
+
 function teamInfo() {
     inquirer
         .prompt([
@@ -81,13 +80,32 @@ function engineerInfo() {
 
 function managerInfo() {
     inquirer
-        .prompt([
-            {
-                type: "input",
-                name: "officeNumber",
-                message: "What is your manager's office number?"
-            }
-        ])
+    .prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What's your team member's name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is your team member's id?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is your team member's email?"
+        },
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "What is your manager's office number?"
+        }
+        ]).then(function(userResponse){
+            var myManager = new Manager(userResponse.name, userResponse.id, userResponse.email, userResponse.officeNumber);
+            teamArr.push(myManager);
+            getRole()
+        })
 }
 
 function internInfo() {
