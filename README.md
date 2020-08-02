@@ -14,6 +14,7 @@ This project is protected under the BSD license.
 
 * [Description](#description)
 * [Installation](#installation)
+* [Dependancies](#dependancies)
 * [Usage](#usage)
 * [Tests](#tests)
 * [Links](#links)
@@ -27,6 +28,11 @@ This project is protected under the BSD license.
 ## Installation
 
 Please run these commands to install dependancies for this project: npm i
+
+## Dependancies
+
+* Inquirer
+* Jest
 
 ## Usage
 
